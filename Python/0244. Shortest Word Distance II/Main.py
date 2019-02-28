@@ -16,6 +16,7 @@ class WordDistance:
         # for i in lst1:
         #     for j in lst2:
         #         res = min(res, abs(i-j))
+        ####two sort merge 方法
         i = 0
         j = 0
         while i < len(lst1) and j <len(lst2):
