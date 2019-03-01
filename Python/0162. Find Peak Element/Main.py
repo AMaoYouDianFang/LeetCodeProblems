@@ -1,9 +1,15 @@
+
 class Solution:
     def findPeakElement(self, nums): 
-        for i in range(1, len(nums)):  #因为只需要返回任意一个
-            if nums[i] < nums[i-1]:
-                return i-1
-        return len(nums) - 1 
+         s = 0
+         e = len(nums) - 1
+         while s < e: #结束条件s==e
+             mid = (s + e) // 2
+             if nums[mid] < nums[mid + 1]:
+                 s = mid + 1
+             elif nums[mid] > nums[mid + 1]:
+                 e = mid
+         return s
 
 if __name__ == "__main__":
     s = Solution()
