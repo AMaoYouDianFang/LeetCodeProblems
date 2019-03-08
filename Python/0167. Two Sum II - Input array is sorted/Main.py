@@ -4,7 +4,7 @@ class Solution:
         i = 0
         j = len(nums) -1
         
-        while(start < end):
+        while(i < j):
             sum = nums[i]+nums[j]  #计算完了会节省时间
             if( sum == target):
                 return [i+1,j+1]
