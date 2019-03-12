@@ -1,5 +1,5 @@
 class Solution(object):
-    def trap(self, height):
+    def trap1(self, height): #指针扫描
         """
         :type height: List[int]
         :rtype: int
@@ -18,11 +18,32 @@ class Solution(object):
                 maxRight = max(height[right], maxRight)
                 res +=  maxRight - height[right] 
                 right -=1
-        return res               
+        return res  
+
+    def trap(self, height):
+        stack = []
+        i = 0
+        res = 0
+        n = len(height)
+        while i< n:
+            if  stack == [] or height[i] <= stack[-1]:
+                stack.append(i)
+                i += 1
+                
+            else:
+                t = stack.pop()
+                
+                if stack == []:
+                    continue
+                res += (min(height[i], height[stack[-1]]) - height[t]) * (i - stack[-1] -1) 
+                print(res)
+                
+        return res
+
 
 if __name__ == "__main__":
     s = Solution()
-    res = s.trap( [0,1,0,2,1,0,1,3,2,1,2,1])  
+    res = s.trap( [0,1,0,2])  
     print(res)                      
 
 
