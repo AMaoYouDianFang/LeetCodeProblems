@@ -12,10 +12,10 @@ class Solution:
             return res
         stack = [root]
         while stack:
-            res.append(stack[-1])
+            res.append(stack[-1].val)
             for i in range(len(stack)):
                 node = stack[0]
-                stack.remove(0)
+                stack.pop(0)
                 if node.left: stack.append(node.left)
                 if node.right: stack.append(node.right)
         return res
