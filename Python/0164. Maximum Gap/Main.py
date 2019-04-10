@@ -12,3 +12,5 @@ if __name__ == "__main__":
     s = Solution()
     res =s.maximumGap([3,6,9,1])
     print(res)
+
+#题目要求在线性时间内完成排序，应该使用木桶排序，或者其他
