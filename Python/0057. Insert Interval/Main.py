@@ -13,12 +13,12 @@ class Solution:
         e = newInterval.end
 
         for i in intervals:
-            if e < i.start:
+            if e < i.start:  # e 小于起点
                 break
-            elif s > i.end:
+            elif s > i.end:  #s大于终点
                 l += 1
                 r += 1
-            else:
+            else:        #有交叉
                 s = min(i.start, s)
                 e = max(e,i.end)
                 r +=1
