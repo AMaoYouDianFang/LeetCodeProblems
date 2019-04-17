@@ -1,5 +1,6 @@
+import sys
 class Solution:
-    def findMedianSortedArrays(self, nums1, nums2):
+    def findMedianSortedArrays1(self, nums1, nums2):
         m = len(nums1)
         n = len(nums2)
         nums1.extend(nums2)
@@ -26,12 +27,32 @@ class Solution:
         cut2 = 0
         cutL = 0  #在nums1中二分法（cutL, cutR）
         cutR = len(nums1)
-        while (cut1 <= len(nums1)):
-            cut1 = 
+        while (cut1 <= len(nums1)):  #cut1 从0 开始，到len(nums1)
+            cut1 =  (cutR - cutL) // 2 + cutL
+            cut2 = lng // 2 - cut1
+            L1 = -sys.maxsize if cut1 == 0 else nums1[cut1-1]
+            L2 = -sys.maxsize if cut2 == 0 else nums2[cut2-1] 
+            R1 = sys.maxsize if cut1 == len(nums1) else nums1[cut1] 
+            R2 = sys.maxsize if cut2 == len(nums2) else nums2[cut2] 
+        #0 是不合法的位置
+            if L1 >R2:
+                cutR = cut1 -1
+            elif L2 > R1:
+                cutL = cut1 + 1  
+            else:  #找到了切分点
+                if lng %2 ==0: #一共偶数个元素
+                    L1 = max(L1,L2)
+                    R1 = min(R1,R2)
+                    return (L1 + R1) / 2
+                else:
+                    print(R1,R2)
+                    R1 = min(R1,R2) #总在这两个数中
+                    return R1
+        return -1
 
 
 
 if __name__ == "__main__": 
     s= Solution()
-    res = s.findMedianSortedArrays([1,3],[2])
+    res = s.findMedianSortedArrays([1,2],[3,4])
     print(res)
