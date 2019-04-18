@@ -1,13 +1,11 @@
-#参考的
-# 时间复杂度O(log n)
-
-# 思路：
-
-# 1. 先将数组二分，判断target与nums[mid]的关系，若target == nums[mid]，直接返回下标，否则进入第二步；
-# 若nums[left] <= nums[mid]，则左子序列是排好序的。
-# 2. 同时若target > nums[left] and target < nums[mid]，则且target在其中，对左子序列二分查找即可；否则从第一步开始递归处理右侧旋转数组。
-# 3. 若nums[mid] <= nums[right]，则右子序列是排好序的。同时若target > nums[mid] and target < nums[right]，
-# 则target在其中，对右子序列二分查找即可；否则从第一步开始递归处理左侧旋转数组。
+'''
+二分搜索法的关键在于获得了中间数后，判断下面要搜索左半段还是右半段，
+我们观察上面红色的数字都是升序的，由此我们可以观察出规律，
+如果中间的数小于最右边的数，则右半段是有序的，
+若中间数大于最右边数，则左半段是有序的，
+我们只要在有序的半段里用首尾两个数组来判断目标值是否在这一区域内，
+这样就可以确定保留哪半边了
+'''
 class Solution:
     def search(self, nums, target):
         l, r = 0, len(nums)-1
