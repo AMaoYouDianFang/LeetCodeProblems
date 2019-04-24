@@ -20,8 +20,7 @@
 
 # if __name__ == "__main__":
 #     solution = Solution()
-#     print(solution.twoSum([2,7,9,11],9))
-    
+#     print(solution.twoSum([2,7,9,11],9))   
 class Solution:
     def twoSum(self, nums, target):
         d = {}

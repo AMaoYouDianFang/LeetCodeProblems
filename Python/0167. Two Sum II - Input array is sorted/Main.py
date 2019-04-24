@@ -1,4 +1,4 @@
-# 167. Two Sum II - Input array is sorted
+# 2-18
 class Solution:
     def twoSum(self, nums, target):
         i = 0

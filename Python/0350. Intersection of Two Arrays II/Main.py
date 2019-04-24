@@ -1,3 +1,4 @@
+#2-15
 class Solution:
     def intersect(self, nums1, nums2):
         nums1.sort() #sort() 直接修改nums1
