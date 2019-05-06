@@ -14,7 +14,17 @@ class Solution:
             maxSum[i] = max(maxSum[i - 1] + nums[i], nums[i])
             #到i处的最大值两个可能，一个是加上a[i], 另一个从a[i]起头，重新开始
         return max(maxSum)
+    
+    def maxSubArray1(self, nums):
+        import sys
+        maxSum = -sys.maxsize  #初始值写错了
+        curSum = 0
+        for i in range(len(nums)):
+            curSum = nums[i] if curSum <= 0 else curSum + nums[i]
+            maxSum = max(maxSum, curSum)
+        return maxSum
 
 if __name__ == "__main__":
     s = Solution()
     print(s.maxSubArray([-5,-1,-3,-4,-1,-2,-1,-5,-4]))
+    print(s.maxSubArray1([-5,-1,-3,-4,-1,-2,-1,-5,-4]))
