@@ -6,6 +6,7 @@
 
 import sys
 class Solution:
+    #动态规划
     def maxProfit1(self, prices):
         if not prices or len(prices) ==0:
             return 0
