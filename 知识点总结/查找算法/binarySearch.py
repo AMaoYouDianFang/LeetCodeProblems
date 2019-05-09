@@ -24,7 +24,7 @@ def binarysearch2(nums, target):
 
 
 if __name__ == "__main__":
-    nums = [1,3,3,6,6,7,9]
+    nums = [1,3,5,7]
     target = 10
     res1 = binarysearch2(nums,target)
     res2 = binarysearch2(nums,target)
