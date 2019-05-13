@@ -1,25 +1,39 @@
 class Solution:
+    #队列
     def largestRectangleArea(self, heights):
-        if not heights :
+        if not heights or len(heights) == 0:
             return  0
         heights.append(0)
         stack = []
         area, maxArea= 0, 0
-        
-        for i  in range (len(heights)):
-            h = 0 if i == len(heights) else heights[i]
-            while stack and heights[i] < heights[stack[-1]]:
-                height = heights[stack.pop()]
-                start = stack[-1] if stack else -1
-                area = heights[height] * (i - start -1)
-                maxArea = max(maxArea,area)
-            stack.append(i)
+        for r in range(len(heights)):
+            while len(stack) > 0 and heights[r] < heights[stack[-1]]:
+                h = heights[stack.pop(-1)] #区间之内的高度是递增的，所以取当前的高度
+                l = stack[-1] if stack else -1
+                maxArea =max(maxArea, (r  -  l - 1)* h)
+            stack.append(r)
+        return maxArea 
+    
+    def largestRectangleArea1(self, heights):
+        maxArea = 0
+        for i in range(len(heights)):
+            r, l = i, i
+            #计算以heights[i]为高度
+            while( l >= 0 and heights[i] <= heights[l] ):
+                l -= 1
+            while (r < len(heights) and heights[i] <= heights[r]):
+                r += 1
+            maxArea = max(maxArea, heights[i] * (r-l-1))
         return maxArea
+            
+
+
+
 
 if __name__ == "__main__":
     s = Solution()
-    res = s.largestRectangleArea([1])
-    print(res)
+    print(s.largestRectangleArea([2,1,5,6,2,3]))
+    print(s.largestRectangleArea1([2,1,5,6,2,3]))
 
 #思路：
 
