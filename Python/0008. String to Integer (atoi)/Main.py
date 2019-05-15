@@ -19,6 +19,7 @@ class Solution:
             res= 10* res + (ord(str[i])-ord('0'))
             i +=1
         return res*sign
+
 if __name__ == "__main__":
     s=Solution()
     res = s.myAtoi("2147483648")
