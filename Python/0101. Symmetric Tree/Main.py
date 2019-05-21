@@ -6,6 +6,7 @@ class TreeNode:
         self.right = None
 
 class Solution:
+    #递归JISJjsjis
     def isSymmetric(self, root: TreeNode) -> bool:
         if not root:
             return True
@@ -17,3 +18,23 @@ class Solution:
         if not left and right or left and not right or left.val != right.val:
             return False
         return self.helper(left.left, right.right) and self.helper(left.right, right.left)
+    #迭代
+    def isSymmetric1(self, root: TreeNode) -> bool:
+        if not root:
+            return True
+        stack = []
+        stack.append(root.left)
+        stack.append(root.right)
+        while(stack):
+            s = stack.pop()
+            t = stack.pop()
+            if not s and not t:
+                continue
+            if not s or not t or s.val != t.val:
+                return False
+            stack.append(s.left)
+            stack.append(t.right)
+            stack.append(s.right)
+            stack.append(t.left)
+        return True
+

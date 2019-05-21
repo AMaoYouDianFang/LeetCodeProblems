@@ -5,11 +5,25 @@ class Solution:
         e = len(nums) - 1
         while s < e:
             m = (s+e)//2
-            if nums[m] > nums[e]:  #这里nums[end]作为目标target
+            if nums[m] > nums[e]: 
                 s = m + 1
             else:
                 e = m 
         return nums[s]
+    
+    def findMin(self, nums) -> int:
+        s = 0
+        e = len(nums) - 1
+        while s < e:\
+            if nums[s] < nums[e]: #提前结束
+                return nums[s]
+            m = (s+e)//2
+            if nums[m] > nums[e]:  
+                s = m + 1
+            else:
+                e = m 
+        return nums[s]
+
 
 if __name__ == "__main__":
     s = Solution()
