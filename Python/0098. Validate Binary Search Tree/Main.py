@@ -7,13 +7,35 @@ class TreeNode:
         self.right = None
 
 class Solution:
+    #nlogn
     def isValidBST(self, root: TreeNode) -> bool:
-        return self.helper(root, -sys.maxsize, sys.maxsize)
-    
-    def helper(self, root, mn, mx):
-        if not root:
+        if not root: return True
+        leftValid = not root.left or self.getMax(root.left) < root.val
+        righValid = not root.right or self.getMin(root.right) > root.val
+        if leftValid and righValid and self.isValidBST(root.left) and self.isValidBST(root.right):
             return True
-        if root.val <= mn or root.val >=mx:
+        else:
             return False
-        return self.helper(root.left, mn, root.val) and self.helper(root.right, root.val, mx)
+    
+    def getMax(self, root):
+        while root.right:
+            root = root.right
+        return root.val
+    def getMin(self, root):
+        while root.left:
+            root = root.left
+        return root.val
+
+    #o(n)
+    def isValidBST(self, root: TreeNode) -> bool:
+        return self.heleper(root, None, None)
+    
+    def heleper(self, root, lower, heigher):
+        if not root: return True
+        if  lower and root.val <= lower.val:
+            return False
+        if  heigher and root.val >= heigher.val:
+            return False
+        return self.heleper(root.left, lower, root) and self.heleper(root.right, root, heigher)
+
         
