@@ -6,17 +6,15 @@ class TreeNode:
 
 class Solution:
     def buildTree(self, inorder, postorder) -> TreeNode:
-        return self.helper(inorder, 0 , len(inorder)-1, postorder, 0, len(postorder)-1)
-    def helper(self, inorder, ileft, iright, postoder, pleft, pright):
-        if ileft>iright or pleft > pright:  #终止条件不太明白
-            return None
-        cur = TreeNode(postoder[pright])
-
-        for i in range(ileft, iright+1):
-            if inorder[i] == cur.val:
-                break
-        cur.left = self.helper(inorder, ileft, i-1, postoder, pleft, pleft + i - ileft -1)
-        cur.right = self.helper(inorder, i+1, iright, postoder, pleft +i -ileft, pright -1 )
-        return cur
-
-        
+        indic = { u : v for v, u in enumerate(inorder) }
+        return self.helper(indic, postorder, 0, len(inorder)-1, 0, len(postorder)-1)
+    
+    def helper(self, indic, postorder, istart, iend, pstart, pend):
+        if istart > iend: return None #pstart > pend 也可以
+        roval = postorder[pend]
+        idx = indic[roval]
+        lng = idx - istart
+        root = TreeNode(roval)
+        root.left = self.helper(indic, postorder, istart, idx-1, pstart, pstart+ lng -1) 
+        root.right = self.helper(indic, postorder, idx + 1, iend, pstart+ lng, pend-1)
+        return root
