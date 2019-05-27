@@ -6,6 +6,7 @@ class TreeNode:
         self.right = None
 
 class Solution:
+    #方法1
     def flatten(self, root: TreeNode) -> None:
         cur = root
         while cur:
@@ -17,3 +18,5 @@ class Solution:
                 cur.right = cur.left
                 cur.left  = None
             cur = cur.right
+    #方法2 二叉树前顺序遍历，然后新建一个树
+ 
