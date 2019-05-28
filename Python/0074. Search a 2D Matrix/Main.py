@@ -31,7 +31,25 @@ class Solution:
             else: r = mid - 1
         return False
 
-    #（待完成）一次二分查找 https://www.cnblogs.com/grandyang/p/4323301.html
+    #一次二分查找
+    def searchMatrix2(self, matrix, target):
+        if not matrix or not matrix[0]:
+            return False
+        m = len(matrix)
+        n = len(matrix[0])
+        s = 0
+        e = n*m-1
+        while s <= e:
+            mid = (s+ e) // 2
+            row = mid // n
+            col = mid % n
+            if matrix[row][col] == target:
+                return True
+            elif matrix[row][col]  > target:
+                e = mid - 1
+            else:
+                s = mid + 1
+        return False
 #注意[[]]
 if __name__ == "__main__":
     s =Solution()
