@@ -9,15 +9,14 @@ class Interval:
 class Solution:
     def merge(self, intervals):
         res = []
-        intervals.sort(key=lambda x: x.start)
-        for i in intervals:
-            if not res or i.start > res[-1].end:
-                res.append(i)
+        intervals.sort(key = lambda x: x.start)
+        for interval in intervals:
+            if not res or res[-1].end < interval.start:
+                res.append(interval)
             else:
-                res[-1].end = max(i.end, res[-1].end)
-    
-        
+                res[-1].end = max(res[-1].end, interval.end)
         return res
+
             
 if __name__ == "__main__":
     solution = Solution()
