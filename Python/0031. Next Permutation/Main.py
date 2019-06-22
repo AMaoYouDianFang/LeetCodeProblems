@@ -11,20 +11,19 @@
 
 class Solution(object):
     def nextPermutation(self, nums):
-        idx = len(nums) - 1
-        i = 0
-        while idx >0:         
-            if nums[idx] > nums[idx - 1]:
-                for  i in range(len(nums)-1, idx-1, -1):  #遍历从前向后做没有成功
-                    if nums[idx-1] < nums[i]:
-                        break
-                print(i)
-                nums[i], nums[idx-1] = nums[idx-1], nums[i]
-                print(nums)
-                
-                break
-            idx -= 1
-        nums[idx:] = list(reversed(nums[idx:])) #反转要放到最后，因为不存在的画直接反转
+        i = len(nums)-1
+        p = len(nums) -1
+        while i-1 >=  0 and nums[i-1] >= nums[i]:
+            i -= 1
+        
+        if i > 0:
+            n = nums[i-1]
+            while nums[p] <= n:
+                p -= 1
+            nums[i-1], nums[p] = nums[p], nums[i-1]
+        
+        nums[i:] = list(reversed(nums[i:]))
+         #反转要放到最后，因为不存在的画直接反转
 
 if __name__ == "__main__":
     s = Solution()

@@ -1,17 +1,18 @@
-class Solution(object):  #不理解
-    def jump(self, nums):
-        """
-        :type nums: List[int]
-        :rtype: int
-        """
+class Solution:
+    def jump(self, nums: List[int]) -> int:
+        if not nums: return -1
+        mx = 0
         n = len(nums)
-        curMax = 0
-        curRch = 0
-        count = 0
+        d = [0] * n
         for i in range(n):
-            if curRch < i:
-                count += 1
-                curRch = curMax
-            curMax = max(curMax, i + nums[i])
-        return count
-             
+            if mx >= n -1 :
+                return d[-1]
+            if mx < i :
+                return -1
+            mx = max(mx, i+nums[i])
+            lst = min(n-1, i+nums[i])
+            j = lst
+            while j > i and d[j] == 0:
+                d[j] = d[i] + 1
+                j -= 1
+        return -1

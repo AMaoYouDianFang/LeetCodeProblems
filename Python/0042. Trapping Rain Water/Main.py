@@ -1,44 +1,20 @@
-class Solution(object):
-    def trap1(self, height): #指针扫描
-        """
-        :type height: List[int]
-        :rtype: int
-        """
-
-        left = 0
-        right = len(height) - 1
+class Solution:
+    def trap(self, height: List[int]) -> int:
+        if not height:
+            return 0
+        l = len(height)
+        leftmax = -1
+        rightmax = -1
+        d = []
         res = 0
-        maxLeft = maxRight = 0
-        while left <=  right:
-            if height[left] < height[right]:
-                maxLeft = max(maxLeft, height[left])
-                res += maxLeft -height[left]
-                left += 1
-            else:
-                maxRight = max(height[right], maxRight)
-                res +=  maxRight - height[right] 
-                right -=1
-        return res  
-
-    def trap(self, height):
-        stack = []
-        i = 0
-        res = 0
-        n = len(height)
-        while i< n:
-            if  stack == [] or height[i] <= stack[-1]:
-                stack.append(i)
-                i += 1
-                
-            else:
-                t = stack.pop()
-                
-                if stack == []:
-                    continue
-                res += (min(height[i], height[stack[-1]]) - height[t]) * (i - stack[-1] -1) 
-                print(res)
-                
+        for i in range(l):
+            leftmax = max(leftmax, height[i])
+            d.append(leftmax)
+        for j in range(l-1, -1, -1):
+            rightmax = max(rightmax, height[j])
+            res = res + min(rightmax, d[j]) - height[j]
         return res
+
 
 
 if __name__ == "__main__":
