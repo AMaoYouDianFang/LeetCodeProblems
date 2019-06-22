@@ -1,42 +1,56 @@
-#https://github.com/apachecn/awesome-algorithm/blob/master/docs/Leetcode_Solutions/Python/0232._implement_queue_using_stacks.md
 class MyQueue:
 
     def __init__(self):
         """
         Initialize your data structure here.
         """
-        self.s1 = []
-        self.s2 = []
-        
+        self.inlst = []
+        self.outlst = []
 
+    def transform(self):
+        if not self.outlst:
+            while self.inlst:
+                self.outlst.append(self.inlst.pop())
+                
+            
+            
     def push(self, x: int) -> None:
         """
         Push element x to the back of queue.
         """
-        while self.s1:
-            self.s2.append(self.s1.pop())
-        self.s1.append(x)
-        while self.s2:
-            self.s1.append(self.s2.pop())
+        self.inlst.append(x)
         
 
     def pop(self) -> int:
         """
         Removes the element from in front of queue and returns that element.
         """
-        return self.s1.pop() 
+        self.transform()
+        return self.outlst.pop()
         
 
     def peek(self) -> int:
         """
         Get the front element.
         """
-        return self.s1[-1]
-
+        self.transform()
+        return self.outlst[-1]
+        
 
     def empty(self) -> bool:
         """
         Returns whether the queue is empty.
         """
-        return not self.s1
+        if not self.inlst and not self.outlst:
+            return True
+        else:
+            return False
         
+
+
+# Your MyQueue object will be instantiated and called as such:
+# obj = MyQueue()
+# obj.push(x)
+# param_2 = obj.pop()
+# param_3 = obj.peek()
+# param_4 = obj.empty()

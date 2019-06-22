@@ -11,10 +11,10 @@ class Solution:
                 e = m 
         return nums[s]
     
-    def findMin(self, nums) -> int:
+    def findMin1(self, nums) -> int:
         s = 0
         e = len(nums) - 1
-        while s < e:\
+        while s < e:
             if nums[s] < nums[e]: #提前结束
                 return nums[s]
             m = (s+e)//2
