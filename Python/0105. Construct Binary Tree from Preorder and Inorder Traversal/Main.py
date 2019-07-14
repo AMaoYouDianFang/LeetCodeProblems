@@ -20,3 +20,7 @@ class Solution:
         root.left = self.helper(properder, inorderDic, preStart+1, preStart+lng, inStart, idex-1)
         root.right = self.helper(properder, inorderDic, preStart+1+lng, preEnd, idex+1, inEnd)
         return root
+
+root = TreeNode(1)
+root.left = TreeNode(2)
+root.right = TreeNode(3)
